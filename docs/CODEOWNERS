@@ -1,0 +1,13 @@
+# docs documentation
+/docs/CODE_OF_CONDUCT.md @boozt-platform/owners
+/docs/CODEOWNERS.md @boozt-platform/owners
+/docs/CONTRIBUTING.md @boozt-platform/owners
+/docs/SECURITY.md @boozt-platform/owners
+
+# .github documentation
+/.github/issue_template.md @boozt-platform/contributors
+/.github/pull_request_template.md @boozt-platform/contributors
+
+# CI
+/.github/workflows/release.yml @boozt-platform/owners
+/.goreleaser.yaml @boozt-platform/owners

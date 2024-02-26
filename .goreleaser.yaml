@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
+# SPDX-License-Identifier: MIT
+
+# For more information about the configuration file, see:
+# https://goreleaser.com/customization/build/
+
+builds:
+  # By default we don't let to release packages. Our consideration is to use SemVer
+  # based by conventional commits to release new versions of the project once it's
+  # merged to the main branch. If this is a Go project, you can remove this section
+  # and use the default configuration to release the packages within the new version.
+  - skip: true
