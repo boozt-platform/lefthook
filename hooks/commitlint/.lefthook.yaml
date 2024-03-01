@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
+# SPDX-License-Identifier: MIT
+
+commit-msg:
+  parallel: true
+  commands:
+    # Lint commit messages based by the conventional commits
+    # https://www.conventionalcommits.org/en/v1.0.0/
+    commitlint:
+      run: bash -c "hooks/commitlint/commitlint.sh {0}"
