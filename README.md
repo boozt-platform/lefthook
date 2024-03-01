@@ -1,45 +1,42 @@
-<!-- Header Starts -->
 [<img src="https://raw.githubusercontent.com/boozt-platform/branding/main/assets/img/platform-logo.png" width="350"/>][homepage]
 
-[![GitHub Tag (latest SemVer)](https://img.shields.io/github/v/tag/boozt-platform/quickstart-template.svg?label=latest&sort=semver)][releases]
+[![GitHub Tag (latest SemVer)](https://img.shields.io/github/v/tag/boozt-platform/lefthook.svg?label=latest&sort=semver)][releases]
 [![license](https://img.shields.io/badge/license-mit-brightgreen.svg)][license]
 
-<!-- Title & Description -->
-# quickstart-template
+# lefthook
 
-Quickstart template for GitHub repositories. You may use this template to create new repositories with a predefined structure.
-<!-- Header Ends -->
+Various organizational hooks based on the [lefthook](https://github.com/evilmartians/lefthook) for development and continuous integration. Hooks enforce consistent practices across all commits and deployments. 
 
-<!-- TOC Starts -->
 ## Table of Contents
 
 - [How to Use It](#how-to-use-it)
+- [Available Hooks](#available-hooks)
 - [About Boozt](#about-boozt)
 - [Reporting Issues](#reporting-issues)
 - [Contributing](#contributing)
 - [License](#license)
-<!-- TOC Ends -->
 
-<!-- Body Starts -->
 ## How to Use It
 
-This project is a template repository with various guidelines, the required CI release versioning pipeline, licenses, and more. You may use this project as a reference to start a new repository. Once you've created a new repository from this template, update the `README.md` file content according to your needs.
+```yaml
+remotes:
+  - git_url: git@github.com/boozt-platform/lefthook
+    ref: v1.0.0
+    configs:
+      # lint commit messages based by the conventional commits
+      - hooks/commitlint/.lefthook.yaml
+      # lint Dockerfiles
+      - hooks/hadolint/.lefthook.yaml
+      # lint shell scripts
+      - hooks/shellcheck/.lefthook.yaml
+```
 
-It is necessary to maintain consistency and structure in this `README.md` file. Please follow the action items below and the comment blocks of this file (`<!-- comment block -->`):
+## Available Hooks
 
-- [x] Create repository from this quickstart template.
-- [ ] Update Title & Description
-- [ ] Add extra header badges if needed. Please keep the License, SemVer badges, and Logo image the same as they were distributed within this file.
-- [ ] Update body content according to your project.
-- [ ] Update the Table of Contents (TOC) based on your updated body content.
-- [ ] Please keep the footer the same as it was distributed within this file.
-- [ ] Remove all comment blocks from this `README.md` file i.e. `<!-- Body Starts--> <!-- Any other comment block -->`.
-- [ ] Remove this [How to Use It](#how-to-use-it) section.
-- [ ] Update [docs/CODEOWNERS](docs/CODEOWNERS) file.
-- [ ] Update [.goreleaser.yaml](.goreleaser.yaml) to your needs, this file and CI pipeline [.github/workflows/release.yml](.github/workflows/release.yml) are used to release new versions automatically once the PRs are merged to the main branch.
-<!-- Body Ends -->
+ - [commitlint](./hooks/commitlint/) (**commit-msg**) - Lint commit messages based by the conventional commits
+ - [hadolint](./hooks/hadolint/) (**pre-commit**) - A smarter Dockerfile linter
+ - [shellcheck](./hooks/shellcheck/) (**pre-commit**) - a static analysis tool for shell scripts
 
-<!-- Footer Starts -->
 ## About Boozt
 
 Boozt is a leading and fast-growing Nordic technology company selling fashion and lifestyle online mainly through its multi-brand webstore [Boozt.com][boozt] and [Booztlet.com][booztlet].
@@ -68,14 +65,13 @@ Contributions are highly valued and very welcome! For the process of reviewing c
 
 This project is licensed under the MIT. Please see [LICENSE][license] for full details.
 
-[homepage]: https://github.com/boozt-platform/quickstart-template
-[releases]: https://github.com/boozt-platform/quickstart-template/releases
-[issues]: https://github.com/boozt-platform/quickstart-template/issues
-[pull-request]: https://github.com/boozt-platform/quickstart-template/pulls
+[homepage]: https://github.com/boozt-platform/lefthook
+[releases]: https://github.com/boozt-platform/lefthook/releases
+[issues]: https://github.com/boozt-platform/lefthook/issues
+[pull-request]: https://github.com/boozt-platform/lefthook/pulls
 [contributing]: ./docs/CONTRIBUTING.md
 [license]: ./LICENSE
 [boozt]: https://www.boozt.com/
 [booztlet]: https://www.booztlet.com/
 [blog]: https://medium.com/boozt-tech
 [careers]: https://careers.booztgroup.com/
-<!-- Footer Ends -->

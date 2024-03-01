@@ -1,0 +1,2 @@
+# ignore goreleaser files
+/dist/

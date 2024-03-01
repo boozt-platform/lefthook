@@ -13,6 +13,7 @@ Thank you for considering contributing to our project! Your contributions are hi
 1. [Updating Tests](#updating-tests)
 1. [Updating Code](#updating-code)
 1. [Creating a Pull Request](#creating-a-pull-request)
+1. [Creating a new hook](#creating-a-new-hook)
 1. [License Information](#license-information)
 1. [Merging and Releasing](#merging-and-releasing)
 
@@ -73,6 +74,29 @@ If a backwards incompatible change is unavoidable, ensure to mention it in your 
 Once you've made your changes and are ready to contribute them back to the project, [create a pull request (PR)][pr]. Provide a clear and descriptive title for your PR, along with a summary of the changes made, any related GitHub issues and any notes on backwards incompatibility.
 
 Be sure to follow the pull request template, if one is provided.
+
+## Creating a new hook
+
+To create a new hook, follow these steps:
+
+1. Run `make add_hook [options]` (i.e. `make add_hook NAME=jslint`). Below are the available options you can pass:
+
+Name|Description|Required|Default|
+---|---|---|---|
+NAME|The name of the hook|Yes||
+DOCKERFILE|Boolean option to create an empty Dockerfile file in the hook folder with the license included|No|False|
+
+2. Add necessary files to your new hook.
+3. Adjust the `.lefthook.yaml` file to execute your new hook. You can use either a script or Docker. It's recommended to use Docker unless it's a simple bash script or specific to a development niche (such as frontend - JavaScript, CSS, or backend - Go, Python).
+4. Update the README.md documentation to include your new hook in the list of available hooks and provide a brief description.
+5. If you requested to create a Dockerfile, the script will output the `yaml` options to add to the `.goreleaser.yaml` file. These options facilitate the creation of a Docker image for various OS architectures.
+6. To run tests against your Docker image, you can use the following commands:
+
+   - `make NAME=<hook-name>` or `make build NAME=<hook-name>`: This command builds the image and runs the security check. For example: `make NAME=jslint`.
+   - Alternatively, you can execute these commands individually:
+     - `make container_build NAME=<hook-name>`: Builds the Docker image.
+     - `make container_scan NAME=<hook-name>`: Performs a security scan on the Docker image.
+     - `make container_run NAME=<hook-name>`: Runs the Docker image.
 
 ## License Information
 

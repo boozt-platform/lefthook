@@ -10,3 +10,9 @@ builds:
   # merged to the main branch. If this is a Go project, you can remove this section
   # and use the default configuration to release the packages within the new version.
   - skip: true
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  name_template: "{{ .Tag }}-next"
