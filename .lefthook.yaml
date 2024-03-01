@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
+# SPDX-License-Identifier: MIT
+
+extends:
+  # lint commit messages based by the conventional commits
+  - hooks/commitlint/.lefthook.yaml
+  # lint Dockerfiles
+  - hooks/hadolint/.lefthook.yaml
+  # lint shell scripts
+  - hooks/shellcheck/.lefthook.yaml
