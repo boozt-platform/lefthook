@@ -20,8 +20,8 @@ Various organizational hooks based on the [lefthook](https://github.com/evilmart
 
 ```yaml
 remotes:
-  - git_url: git@github.com/boozt-platform/lefthook
-    ref: v1.0.0
+  - git_url: git@github.com:boozt-platform/lefthook
+    ref: v1.1.1
     configs:
       # lint commit messages based by the conventional commits
       - hooks/commitlint/.lefthook.yaml
