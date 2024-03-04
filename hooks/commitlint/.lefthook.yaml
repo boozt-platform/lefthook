@@ -3,8 +3,8 @@
 
 commit-msg:
   parallel: true
-  commands:
+  scripts:
     # Lint commit messages based by the conventional commits
     # https://www.conventionalcommits.org/en/v1.0.0/
-    commitlint:
-      run: bash -c "hooks/commitlint/commitlint.sh {0}"
+    "commitlint.sh":
+      runner: bash
