@@ -21,7 +21,7 @@ Various organizational hooks based on the [lefthook](https://github.com/evilmart
 ```yaml
 remotes:
   - git_url: git@github.com:boozt-platform/lefthook
-    ref: v1.1.1
+    ref: v1.2.0
     configs:
       # lint commit messages based by the conventional commits
       - hooks/commitlint/.lefthook.yaml
@@ -29,6 +29,8 @@ remotes:
       - hooks/hadolint/.lefthook.yaml
       # lint shell scripts
       - hooks/shellcheck/.lefthook.yaml
+      # check if the license headers are present in the files
+      - hooks/license-checker/.lefthook.yaml
 ```
 
 ## Available Hooks
@@ -36,6 +38,7 @@ remotes:
  - [commitlint](./hooks/commitlint/) (**commit-msg**) - Lint commit messages based by the conventional commits
  - [hadolint](./hooks/hadolint/) (**pre-commit**) - A smarter Dockerfile linter
  - [shellcheck](./hooks/shellcheck/) (**pre-commit**) - a static analysis tool for shell scripts
+ - [license-checker](./hooks/license-checker/) (**pre-commit**) - Checks if the license headers are present in the Git staged files with possibility to exclude certain files or file extensions using Regular Expression pattern.
 
 ## About Boozt
 
