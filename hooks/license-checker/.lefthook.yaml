@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
+# SPDX-License-Identifier: MIT
+
+pre-commit:
+  parallel: true
+  scripts:
+    "license-checker.sh":
+      runner: bash

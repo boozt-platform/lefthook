@@ -1,8 +1,3 @@
-<!--
-SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
-SPDX-License-Identifier: MIT
--->
-
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge
