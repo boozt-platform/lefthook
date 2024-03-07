@@ -1,8 +1,3 @@
-<!--
-SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
-SPDX-License-Identifier: MIT
--->
-
 # Contributing Guidelines
 
 Thank you for considering contributing to our project! Your contributions are highly valued and help improve the project for everyone. To make the contribution process as smooth as possible, please follow the guidelines outlined below:
