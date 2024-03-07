@@ -4,7 +4,6 @@
 SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := build
 NAME ?= ""
-DOCKERFILE ?= "false"
 
 .PHONY: build
 build: container_build container_scanning
@@ -35,4 +34,6 @@ container_scanning:
 
 .PHONY: add_hook
 add_hook:
-	@NAME=$(NAME) DOCKERFILE=$(DOCKERFILE) $(PWD)/add-hook.sh
+	@read -r -p "Enter the name of the hook: " HOOK_NAME; \
+	read -r -p "Do you want to create a Dockerfile for the hook? [y/N] " CREATE_DOCKERFILE; \
+	bash -c "NAME=$$HOOK_NAME CREATE_DOCKERFILE=$$CREATE_DOCKERFILE $(PWD)/add-hook.sh"

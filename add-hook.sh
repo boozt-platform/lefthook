@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: MIT
 
 export NAME="${NAME:-""}"
-export DOCKERFILE="${DOCKERFILE:-false}"
+export CREATE_DOCKERFILE="${CREATE_DOCKERFILE:-N}"
 
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 HOOKS_DIR="hooks"
@@ -43,9 +43,14 @@ cat > "${HOOKS_PATH}/${NAME}/.lefthook.yaml" <<EOF
 # SPDX-License-Identifier: MIT
 EOF
 
-# create Dockerfile if the DOCKERFILE environment variable is set and
+# create README.md file to for a new hook
+cat > "${HOOKS_PATH}/${NAME}/README.md" <<EOF
+# ${NAME} hook
+EOF
+
+# create Dockerfile if the CREATE_DOCKERFILE environment variable is set and
 # add the SPDX license to the Dockerfile
-if [ "$DOCKERFILE" = "true" ]; then
+if [ "$CREATE_DOCKERFILE" = "y" ]; then
     cat > "${HOOKS_PATH}/${NAME}/Dockerfile" <<EOF
 # SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
 # SPDX-License-Identifier: MIT
@@ -53,10 +58,13 @@ EOF
 
     # output yaml configuration for .goreleaser.yaml file
     # so it can be manually added in order to build the
-    # docker images for the new module.
+    # docker images for the new hook.
     cat <<EOF
+# Add the following configuration to the .goreleaser.yaml file
+# to build the docker images for the new hook.
+
 dockers:
-  # Docker images for the ${NAME} module
+  # Docker images for the ${NAME} hook
   - image_templates:
       - "{{ .Env.REGISTRY }}/{{.ProjectName}}-${NAME}:{{ .Version }}-amd64"
       - "{{ .Env.REGISTRY }}/{{.ProjectName}}-${NAME}:latest-amd64"
@@ -80,7 +88,7 @@ dockers:
       - "--platform=linux/386"
 
 docker_manifests:
-  # Docker manifest for the ${NAME} module
+  # Docker manifest for the ${NAME} hook
   - name_template: "{{ .Env.REGISTRY }}/{{.ProjectName}}-${NAME}:{{ .Version }}"
     image_templates:
       - "{{ .Env.REGISTRY }}/{{.ProjectName}}-${NAME}:{{ .Version }-amd64"
