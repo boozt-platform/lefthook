@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
+# SPDX-License-Identifier: MIT
+---
+pre-commit:
+  commands:
+    # for a full documentation of the markdownlint-cli see
+    # https://github.com/DavidAnson/markdownlint
+    markdown-lint:
+      glob: "*.md"
+      run: |
+        docker run -v $(pwd):/workdir \
+          ghcr.io/igorshubovych/markdownlint-cli:latest \
+          --dot {staged_files}
