@@ -4,18 +4,21 @@
 # SPDX-License-Identifier: MIT
 
 # Script is a pre-commit hook to check if the staged files
-# has the license header from the file license-header.txt (we only check if it's contains).
+# has the license header from the file license-header.txt or the
+# environment variable called LICENSE_HEADER (we only check if
+# it's contains).
 
 set -eo pipefail
 
-# include .license-checker file if exists in the root directory
-if [ -f .license-checker ]; then
-    # shellcheck source=/dev/null
-    source .license-checker
-fi
-
-EXCLUDE_FILES_EXT=${EXCLUDE_FILES_EXT:-"LICENSE|\\.md|\\.gitignore|\\.license-checker|CODEOWNERS|\\.gitattributes|\\.editorconfig|\\.json|\\.lock|\\.toml"}
+LICENSE_HEADER=${LICENSE_HEADER:-""}
+EXCLUDE_FILES_EXT=${EXCLUDE_FILES_EXT:-"LICENSE|\\.md|\\.gitignore|\\.license-checker.txt|CODEOWNERS|\\.gitattributes|\\.editorconfig|\\.json|\\.lock|\\.toml"}
 STAGED_FILES=$(git diff --name-only --diff-filter=d --staged)
+
+# read .license-checker.txt file if exists in the root directory
+if [[ -f .license-checker.txt && -z "$LICENSE_HEADER" ]]; then
+    # read the file and set the LICENSE_HEADER variable
+    LICENSE_HEADER=$(cat .license-checker.txt)
+fi
 
 # error message function printing in red color
 # usage: error "message"
@@ -27,7 +30,7 @@ error() {
 # if the LICENSE_HEADER is empty, then exit
 if [ -z "$LICENSE_HEADER" ]; then
     error "The LICENSE_HEADER environment variable is empty."
-    error "Either create .license-checker file in the root directory or set the LICENSE_HEADER environment variable."
+    error "Either create .license-checker.txt file in the root directory or set the LICENSE_HEADER environment variable."
     exit 1
 fi
 
