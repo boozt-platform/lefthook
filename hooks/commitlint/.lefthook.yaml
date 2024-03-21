@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
 # SPDX-License-Identifier: MIT
-
+---
 commit-msg:
   parallel: true
   scripts:
