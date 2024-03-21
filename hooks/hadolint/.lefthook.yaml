@@ -1,10 +1,12 @@
 # SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
 # SPDX-License-Identifier: MIT
-
+---
 pre-commit:
   parallel: true
   commands:
     hadolint:
       glob: "Dockerfile*"
       run: |
-        docker run --rm -it -v $(pwd):/app -w /app ghcr.io/hadolint/hadolint hadolint {staged_files}
+        docker run --rm -it -v $(pwd):/app -w /app \
+          ghcr.io/hadolint/hadolint \
+          hadolint {staged_files}
