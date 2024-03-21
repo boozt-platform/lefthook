@@ -1,6 +1,9 @@
 # Contributing Guidelines
 
-Thank you for considering contributing to our project! Your contributions are highly valued and help improve the project for everyone. To make the contribution process as smooth as possible, please follow the guidelines outlined below:
+Thank you for considering contributing to our project! Your contributions are
+highly valued and help improve the project for everyone. To make the
+contribution process as smooth as possible, please follow the guidelines
+outlined below:
 
 1. [Opening a GitHub Issue](#opening-a-github-issue)
 1. [Forking the Repository](#forking-the-repository)
@@ -14,41 +17,60 @@ Thank you for considering contributing to our project! Your contributions are hi
 
 ## Opening a GitHub Issue
 
-If you encounter a bug, have a feature request (please note that we want to avoid [feature creep][feature-creep] and we cannot guarantee your request will be accepted), or wish to suggest an improvement, please open a GitHub issue and ask the [CODEOWNERS][codeowners] and community prior starting a contribution. Provide a clear and concise description of the problem or suggestion, including any relevant details or context. This will help us understand and address the issue efficiently.
+If you encounter a bug, have a feature request (please note that we want to
+avoid [feature creep][feature-creep] and we cannot guarantee your request will
+be accepted), or wish to suggest an improvement, please open a GitHub issue and
+ask the [CODEOWNERS][codeowners] and community prior starting a contribution.
+
+Provide a clear and concise description of the problem or suggestion, including
+any relevant details or context. This will help us understand and address the
+issue efficiently.
 
 ## Forking the Repository
 
-To contribute to the project, fork the repository on GitHub and create a new branch as described in the [GitHub Flow][github-flow]. This will create a copy of the project in your GitHub account where you can make changes without affecting the original repository.
+To contribute to the project, fork the repository on GitHub and create a new
+branch as described in the [GitHub Flow][github-flow]. This will create a copy
+of the project in your GitHub account where you can make changes without
+affecting the original repository.
 
 ## Updating Documentation
 
-Documentation is crucial for understanding and using the project effectively. If you make changes to the code, please ensure that any relevant documentation is updated accordingly. This includes README files, code comments, and any other documentation files.
+Documentation is crucial for understanding and using the project effectively.
+If you make changes to the code, please ensure that any relevant documentation
+is updated accordingly. This includes README files, code comments, and any
+other documentation files.
 
 Please follow [Readme Driven Development][rdd].
 
 ## Updating Tests
 
-Maintaining a robust test suite is essential for ensuring the reliability and stability of the project.
+Maintaining a robust test suite is essential for ensuring the reliability and
+stability of the project.
 
-If you make changes to the code, please update any relevant tests to reflect those changes. This helps
-prevent regressions and ensures that the project continues to function as expected (see [TDD][tdd]).
+If you make changes to the code, please update any relevant tests to reflect
+those changes. This helps prevent regressions and ensures that the project
+continues to function as expected (see [TDD][tdd]).
 
-The test folder (if provided) in repository will have documentation guideline how to run the tests.
+The test folder (if provided) in repository will have documentation guideline
+how to run the tests.
 
 ## Updating Code
 
-Ensure to make your changes to the codebase and [commit][commit-and-review] messages early and often, following the standards outlined in the project's README.md or CONTRIBUTING.md file. Use [conventional commits][conventional-commits] for commit messages, adhering to one of the following patterns:
+Ensure to make your changes to the codebase and [commit][commit-and-review]
+messages early and often, following the standards outlined in the project's
+README.md or CONTRIBUTING.md file. Use [conventional commits][conventional-commits]
+for commit messages, adhering to one of the following patterns:
 
- - `<type>[optional scope]: <description> [optional body] [optional footer(s)]`
- - `<type>[optional scope]: <subject>`
+- `<type>[optional scope]: <description> [optional body] [optional footer(s)]`
+- `<type>[optional scope]: <subject>`
 
 Refer to the table below for the possible commit types:
 
 | Type | Description|
 | ---- | ---- |
-| build | Changes affecting the build system or dependencies (example scopes: gulp, npm)
+| build | Changes affecting the build system or dependencies |
 | chore | Maintenance tasks such as upgrades or cleanup |
-| ci | Changes to CI configuration files or scripts (example scopes: Travis, Circle, GitLab, GitHub) |
+| ci | Changes to CI configuration files or scripts |
 | docs | Documentation-only changes |
 | feat | New features |
 | fix | Bug fixes |
@@ -58,15 +80,20 @@ Refer to the table below for the possible commit types:
 | style | Changes to code style or formatting |
 | test | Adding or correcting tests |
 
-Exclamation mark (!) is optional and can be used to indicate breaking changes. Use it before colon (:). i.e. `feat(auth)!: add login feature`.
+Exclamation mark (!) is optional and can be used to indicate breaking changes.
+Use it before colon (:). i.e. `feat(auth)!: add login feature`.
 
 For comprehensive documentation, [click here][conventional-commits].
 
-If a backwards incompatible change is unavoidable, ensure to mention it in your pull request and provide justification for the necessity of the change.
+If a backwards incompatible change is unavoidable, ensure to mention it in
+your pull request and provide justification for the necessity of the change.
 
 ## Creating a Pull Request
 
-Once you've made your changes and are ready to contribute them back to the project, [create a pull request (PR)][pr]. Provide a clear and descriptive title for your PR, along with a summary of the changes made, any related GitHub issues and any notes on backwards incompatibility.
+Once you've made your changes and are ready to contribute them back to the
+project, [create a pull request (PR)][pr]. Provide a clear and descriptive
+title for your PR, along with a summary of the changes made, any related GitHub
+issues and any notes on backwards incompatibility.
 
 Be sure to follow the pull request template, if one is provided.
 
@@ -74,39 +101,71 @@ Be sure to follow the pull request template, if one is provided.
 
 To create a new hook, follow these steps:
 
-1. Run `make add_hook [options]` (i.e. `make add_hook NAME=jslint`). Below are the available options you can pass:
+1. Create a new folder in `hooks/[new-hook-name]/`.
 
-Name|Description|Required|Default|
----|---|---|---|
-NAME|The name of the hook|Yes||
-DOCKERFILE|Boolean option to create an empty Dockerfile file in the hook folder with the license included|No|False|
+1. Create a file inside folder `hooks/[new-hook-name]/` called `.lefthook.yaml`
+within license header as the following code below:
 
-2. Add necessary files to your new hook.
-3. Adjust the `.lefthook.yaml` file to execute your new hook. You can use either a script or Docker. It's recommended to use Docker unless it's a simple bash script or specific to a development niche (such as frontend - JavaScript, CSS, or backend - Go, Python).
-4. Update the README.md documentation to include your new hook in the list of available hooks and provide a brief description.
-5. If you requested to create a Dockerfile, the script will output the `yaml` options to add to the `.goreleaser.yaml` file. These options facilitate the creation of a Docker image for various OS architectures.
-6. To run tests against your Docker image, you can use the following commands:
+    ```yaml
+    # SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
+    # SPDX-License-Identifier: MIT
+    ---
+    pre-commit:
+      parallel: true
+      commands:
+        hadolint:
+          glob: "Dockerfile*"
+          run: |
+            docker run --rm -it -v $(pwd):/app -w /app \
+              ghcr.io/hadolint/hadolint \
+              hadolint {staged_files}
+    ```
 
-   - `make NAME=<hook-name>` or `make build NAME=<hook-name>`: This command builds the image and runs the security check. For example: `make NAME=jslint`.
-   - Alternatively, you can execute these commands individually:
-     - `make container_build NAME=<hook-name>`: Builds the Docker image.
-     - `make container_scan NAME=<hook-name>`: Performs a security scan on the Docker image.
-     - `make container_run NAME=<hook-name>`: Runs the Docker image.
+1. Create a file inside folder `hooks/[new-hook-name]/` called `README.md` with
+the following content structure:
+
+    ```markdown
+    # [new-hook-name] hook
+
+    ## How to Use It
+
+    <!-- add content of how to use it -->
+
+    ## Configuration
+
+    <!-- add content how to configure the new hook -->
+
+    ```
+
+    > [!NOTE]  
+    > For hooks that have scripts, consider [following the guidelines](https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md#scripts)
+    to place them in the correct `.lefthook/` directory.
+
+1. Update the main project's `README.md` file to add this hook in
+"How to Use It" and "Available Hooks" sections.
 
 ## License Information
 
-To ensure proper attribution and compliance with licensing terms, we require that all source code files include a [short-form SPDX ID][spdx-license-info] license comment block. This block should be added at the top of each source code file. 
+To ensure proper attribution and compliance with licensing terms, we require
+that all source code files include a [short-form SPDX ID][spdx-license-info]
+license comment block. This block should be added at the top of each
+source code file.
 
-```
+```text
 SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
 SPDX-License-Identifier: MIT
 ```
 
-For more information of the SPDX file tags please follow https://spdx.github.io/spdx-spec/v2.3/file-tags/.
+For more information of the SPDX file tags please follow [https://spdx.github.io/spdx-spec/v2.3/file-tags/](https://spdx.github.io/spdx-spec/v2.3/file-tags/).
 
 ## Merging and Releasing
 
-After your pull request has been reviewed and approved by the project maintainers ([CODEOWNERS][codeowners]), it will be merged into the main branch. Once merged, the changes will be included in the next release of the project and the [Semantic Versioning (SemVer)][semver] principles will be applied. You'll be asked for squash your commits if it's not following the standards of the [conventional commits][conventional-commits].
+After your pull request has been reviewed and approved by the project
+maintainers ([CODEOWNERS][codeowners]), it will be merged into the main branch.
+Once merged, the changes will be included in the next release of the project
+and the [Semantic Versioning (SemVer)][semver] principles will be applied.
+You'll be asked for squash your commits if it's not following the standards of
+the [conventional commits][conventional-commits].
 
 **Thank you for your contribution!**
 

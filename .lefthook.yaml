@@ -1,12 +1,14 @@
 # SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
 # SPDX-License-Identifier: MIT
-
+---
 extends:
   # lint commit messages based by the conventional commits
   - hooks/commitlint/.lefthook.yaml
-  # lint Dockerfiles
-  - hooks/hadolint/.lefthook.yaml
   # lint shell scripts
   - hooks/shellcheck/.lefthook.yaml
   # check if the license headers are present in the files
   - hooks/license-checker/.lefthook.yaml
+  # lint the markdown (.md) files
+  - hooks/markdown-lint/.lefthook.yaml
+  # lint the yaml (.yml, .yaml) files
+  - hooks/yamllint/.lefthook.yaml

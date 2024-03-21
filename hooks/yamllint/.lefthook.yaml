@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
+# SPDX-License-Identifier: MIT
+---
+pre-commit:
+  commands:
+    # for a full documentation of the yamllint see
+    # https://yamllint.readthedocs.io/
+    yamllint:
+      glob: "*.{yml,yaml}"
+      run: |
+        docker run -v $(pwd):/code \
+          pipelinecomponents/yamllint:0.31.0 \
+          /app/bin/yamllint {staged_files}

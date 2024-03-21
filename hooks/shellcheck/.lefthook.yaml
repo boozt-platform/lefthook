@@ -1,10 +1,13 @@
 # SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
 # SPDX-License-Identifier: MIT
-
+---
 pre-commit:
   parallel: true
   commands:
     shellcheck:
       glob: "*.sh"
+      # https://github.com/koalaman/shellcheck/wiki
       run: |
-        docker run --rm -v $(pwd):/mnt koalaman/shellcheck:stable {staged_files}
+        docker run --rm -v $(pwd):/mnt \
+          koalaman/shellcheck:stable \
+          {staged_files}

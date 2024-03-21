@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
+# SPDX-License-Identifier: MIT
+---
+# For more information about the configuration file, see:
+# https://yamllint.readthedocs.io/en/stable/configuration.html
+extends: default
+
+yaml-files:
+  - '*.yaml'
+  - '*.yml'
+  - '.yamllint'
+  - '.yamllint.yaml'

@@ -1,6 +1,8 @@
 # commitlint hook
 
-This hook checks if the commit message follows the conventional commits framework. For a full information take a look at CONTRIBUTING.md guideline (Updating Code section).
+This hook checks if the commit message follows the conventional commits
+framework. For a full information take a look at CONTRIBUTING.md guideline
+(Updating Code section).
 
 ## How to Use It
 
@@ -16,7 +18,8 @@ remotes:
 
 ## Configuration
 
-The script supports two environment variables that can be reconfigured. You can define the environment variables as follows:
+The script supports two environment variables that can be reconfigured. You
+can define the environment variables as follows:
 
 ```shell
 # default values for environment variables
@@ -25,7 +28,8 @@ export MAX_COMMIT_MESSAGE_LENGTH=80
 export VALID_COMMIT_PREFIXES="build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test"
 ```
 
-Alternatively, you can create a `.commitlint` environment file in the project root, and the script will automatically source it:
+Alternatively, you can create a `.commitlint` environment file in the project
+root, and the script will automatically source it:
 
 ```bash
 # .commitlint
