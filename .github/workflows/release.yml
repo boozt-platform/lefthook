@@ -1,8 +1,9 @@
 # SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
 # SPDX-License-Identifier: MIT
 
+---
 name: Release
-on:
+"on":
   push:
     branches:
       - 'main'

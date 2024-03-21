@@ -1,11 +1,15 @@
+<!-- markdownlint-disable -->
 [<img src="https://raw.githubusercontent.com/boozt-platform/branding/main/assets/img/platform-logo.png" width="350"/>][homepage]
 
 [![GitHub Tag (latest SemVer)](https://img.shields.io/github/v/tag/boozt-platform/lefthook.svg?label=latest&sort=semver)][releases]
 [![license](https://img.shields.io/badge/license-mit-brightgreen.svg)][license]
+<!-- markdownlint-restore -->
 
 # lefthook
 
-Various organizational hooks based on the [lefthook](https://github.com/evilmartians/lefthook) for development and continuous integration. Hooks enforce consistent practices across all commits and deployments. 
+Various organizational hooks based on the [lefthook](https://github.com/evilmartians/lefthook)
+for development and continuous integration. Hooks enforce consistent practices
+across all commits and deployments.
 
 ## Table of Contents
 
@@ -18,7 +22,12 @@ Various organizational hooks based on the [lefthook](https://github.com/evilmart
 
 ## How to Use It
 
+Create a new file `.lefthook.yaml` in your project's root folder and use the
+example content below:
+
 ```yaml
+# .lefthook.yaml
+---
 remotes:
   - git_url: git@github.com:boozt-platform/lefthook
     ref: v1.2.0
@@ -33,26 +42,40 @@ remotes:
       - hooks/license-checker/.lefthook.yaml
 ```
 
+Run `lefthook install` (follow the [installation guide](https://github.com/evilmartians/lefthook/blob/master/docs/install.md)
+if the lefthook command is not present on the system).
+
 ## Available Hooks
 
- - [commitlint](./hooks/commitlint/) (**commit-msg**) - Lint commit messages based by the conventional commits
- - [hadolint](./hooks/hadolint/) (**pre-commit**) - A smarter Dockerfile linter
- - [shellcheck](./hooks/shellcheck/) (**pre-commit**) - a static analysis tool for shell scripts
- - [license-checker](./hooks/license-checker/) (**pre-commit**) - Checks if the license headers are present in the Git staged files with possibility to exclude certain files or file extensions using Regular Expression pattern.
+- [commitlint](./hooks/commitlint/) (**commit-msg**) - Lint commit messages
+based by the conventional commits
+- [hadolint](./hooks/hadolint/) (**pre-commit**) - A smarter Dockerfile linter
+- [shellcheck](./hooks/shellcheck/) (**pre-commit**) - a static analysis tool
+for shell scripts
+- [license-checker](./hooks/license-checker/) (**pre-commit**) - Checks if the
+license headers are present in the Git staged files with possibility to exclude
+certain files or file extensions using Regular Expression pattern.
 
 ## About Boozt
 
-Boozt is a leading and fast-growing Nordic technology company selling fashion and lifestyle online mainly through its multi-brand webstore [Boozt.com][boozt] and [Booztlet.com][booztlet].
+Boozt is a leading and fast-growing Nordic technology company selling fashion
+and lifestyle online mainly through its multi-brand webstore [Boozt.com][boozt]
+and [Booztlet.com][booztlet].
 
-The company is focused on using cutting-edge, in-house developed technology to curate the best possible customer experience.
+The company is focused on using cutting-edge, in-house developed technology to
+curate the best possible customer experience.
 
-With offices in Sweden, Denmark, Lithuania and Poland, we pride ourselves in having a diverse team, consisting of 1100+ employees and 38 nationalities.
+With offices in Sweden, Denmark, Lithuania and Poland, we pride ourselves in
+having a diverse team, consisting of 1100+ employees and 38 nationalities.
 
-See our [Medium][blog] blog page for technology-focused articles. Would you like to make your mark by working with us at Boozt? Take a look at our [latest hiring opportunities][careers].
+See our [Medium][blog] blog page for technology-focused articles. Would you
+like to make your mark by working with us at Boozt? Take a look at our
+[latest hiring opportunities][careers].
 
 ## Reporting Issues
 
-Please provide a clear and concise description of the problem or the feature you're missing along with any relevant context or screenshots.
+Please provide a clear and concise description of the problem or the feature
+you're missing along with any relevant context or screenshots.
 
 Check existing issues before reporting to avoid duplicates.
 
@@ -60,13 +83,16 @@ Please follow the [Issue Reporting Guidelines][issues] before opening a new issu
 
 ## Contributing
 
-Contributions are highly valued and very welcome! For the process of reviewing changes, we use [Pull Requests][pull-request]. For a detailed information please follow the [Contribution Guidelines][contributing]
+Contributions are highly valued and very welcome! For the process of reviewing
+changes, we use [Pull Requests][pull-request]. For a detailed information
+please follow the [Contribution Guidelines][contributing]
 
 ## License
 
 [![license](https://img.shields.io/badge/license-mit-brightgreen.svg)][license]
 
-This project is licensed under the MIT. Please see [LICENSE][license] for full details.
+This project is licensed under the MIT. Please see [LICENSE][license] for
+full details.
 
 [homepage]: https://github.com/boozt-platform/lefthook
 [releases]: https://github.com/boozt-platform/lefthook/releases
