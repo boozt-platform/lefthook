@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
+# SPDX-License-Identifier: MIT
+---
+pre-commit:
+  parallel: true
+  commands:
+    jsonlint:
+      glob: "*.json"
+      stage_fixed: true
+      run: |
+        docker run --rm -v $(pwd):/code \
+          pipelinecomponents/jsonlint:0.19.1 \
+          jsonlint {staged_files} -s -i
