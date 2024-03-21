@@ -40,6 +40,12 @@ remotes:
       - hooks/shellcheck/.lefthook.yaml
       # check if the license headers are present in the files
       - hooks/license-checker/.lefthook.yaml
+      # lint the markdown (.md) files
+      - hooks/markdown-lint/.lefthook.yaml
+      # A linter for YAML files.
+      - hooks/yamllint/.lefthook.yaml
+      # validate the JSON files
+      - hooks/jsonlint/.lefthook.yaml
 ```
 
 Run `lefthook install` (follow the [installation guide](https://github.com/evilmartians/lefthook/blob/master/docs/install.md)
@@ -55,6 +61,10 @@ for shell scripts
 - [license-checker](./hooks/license-checker/) (**pre-commit**) - Checks if the
 license headers are present in the Git staged files with possibility to exclude
 certain files or file extensions using Regular Expression pattern.
+- [jsonlint](./hooks/jsonlint/) (**pre-commit**) - Validation tool for JSON files.
+- [yamllint](./hooks/yamllint/) (**pre-commit**) - A linter for YAML files.
+- [markdown-lint](./hooks/markdown-lint/) (**pre-commit**) - is a static
+analysis tool for *.md files.
 
 ## About Boozt
 
