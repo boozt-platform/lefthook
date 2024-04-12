@@ -29,8 +29,8 @@ example content below:
 # .lefthook.yaml
 ---
 remotes:
-  - git_url: git@github.com:boozt-platform/lefthook
-    ref: v1.2.0
+  - git_url: https://github.com/boozt-platform/lefthook.git
+    ref: v1.3.0
     configs:
       # lint commit messages based by the conventional commits
       - hooks/commitlint/.lefthook.yaml
