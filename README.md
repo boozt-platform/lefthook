@@ -46,6 +46,8 @@ remotes:
       - hooks/yamllint/.lefthook.yaml
       # validate the JSON files
       - hooks/jsonlint/.lefthook.yaml
+      # terraform validation, fmt and tests
+      - hooks/terraform/.lefthook.yaml
 ```
 
 Run `lefthook install` (follow the [installation guide](https://github.com/evilmartians/lefthook/blob/master/docs/install.md)
@@ -65,6 +67,9 @@ certain files or file extensions using Regular Expression pattern.
 - [yamllint](./hooks/yamllint/) (**pre-commit**) - A linter for YAML files.
 - [markdown-lint](./hooks/markdown-lint/) (**pre-commit**) - is a static
 analysis tool for *.md files.
+- [terraform](./hooks/terraform/)
+  - **pre-commit**: Formats and validates Terraform configuration files.
+  - **pre-push**: Runs tests to ensure Terraform configurations are correct.
 
 ## About Boozt
 
