@@ -46,6 +46,8 @@ remotes:
       - hooks/yamllint/.lefthook.yaml
       # validate the JSON files
       - hooks/jsonlint/.lefthook.yaml
+      # terraform validation, fmt and tests
+      - hooks/terraform/.lefthook.yaml
 ```
 
 Run `lefthook install` (follow the [installation guide](https://github.com/evilmartians/lefthook/blob/master/docs/install.md)
