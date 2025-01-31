@@ -1,0 +1,92 @@
+# SPDX-FileCopyrightText: Copyright Boozt Fashion, AB
+# SPDX-License-Identifier: MIT
+---
+terraform:
+  commands:
+    fmt: &terraform_fmt
+      glob: "*.{tf,tfvars,hcl}"
+      stage_fixed: false
+      use_stdin: false
+      priority: 1
+      tags:
+        - terraform
+        - lint
+      run: |
+        TF_VERSION=${TF_VERSION:-1.10.5}
+        TF_CHECK=${TF_CHECK:-false}
+        TF_DIFF=${TF_DIFF:-false}
+
+        docker run --rm -it \
+          -v $PWD:$PWD -w $PWD \
+          -e TF_LOG \
+          hashicorp/terraform:${TF_VERSION} \
+          init -input=false
+
+        docker run --rm -it \
+          -v $PWD:$PWD -w $PWD \
+          -e TF_LOG \
+          hashicorp/terraform:${TF_VERSION} \
+          fmt --recursive --check=${TF_CHECK} --diff=${TF_DIFF} {staged_files}
+
+    validate: &terraform_validate
+      glob: "*.{tf,tfvars,hcl}"
+      stage_fixed: false
+      use_stdin: false
+      priority: 2
+      tags:
+        - terraform
+        - lint
+      run: |
+        TF_VERSION=${TF_VERSION:-1.10.5}
+
+        docker run --rm -it \
+          -v $PWD:$PWD -w $PWD \
+          -e TF_LOG \
+          hashicorp/terraform:${TF_VERSION} \
+          init -input=false
+
+        docker run --rm -it \
+          -v $PWD:$PWD -w $PWD \
+          -e TF_LOG \
+          hashicorp/terraform:${TF_VERSION} \
+          validate
+
+    test: &terraform_test
+      stage_fixed: false
+      use_stdin: false
+      priority: 3
+      tags:
+        - terraform
+        - test
+      run: |
+        TF_VERSION=${TF_VERSION:-1.10.5}
+        TF_VERBOSE=${TF_VERBOSE:-false}
+
+        docker run --rm -it \
+          -v $PWD:$PWD -w $PWD \
+          -e TF_LOG \
+          hashicorp/terraform:${TF_VERSION} \
+          init -input=false
+
+        docker run --rm -it \
+          -v $PWD:$PWD -w $PWD \
+          -e TF_LOG \
+          hashicorp/terraform:${TF_VERSION} \
+          test -verbose=${TF_VERBOSE}
+
+pre-commit:
+  parallel: true
+  commands:
+    terraform_fmt:
+      <<: *terraform_fmt
+      env:
+        TF_CHECK: "true"
+        TF_DIFF: "true"
+    terraform_validate:
+      <<: *terraform_validate
+
+pre-push:
+  parallel: true
+  commands:
+    terraform_test:
+      <<: *terraform_test

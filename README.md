@@ -65,6 +65,9 @@ certain files or file extensions using Regular Expression pattern.
 - [yamllint](./hooks/yamllint/) (**pre-commit**) - A linter for YAML files.
 - [markdown-lint](./hooks/markdown-lint/) (**pre-commit**) - is a static
 analysis tool for *.md files.
+- [terraform](./hooks/terraform/)
+  - **pre-commit**: Formats and validates Terraform configuration files.
+  - **pre-push**: Runs tests to ensure Terraform configurations are correct.
 
 ## About Boozt
 
