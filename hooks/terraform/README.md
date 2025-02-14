@@ -6,10 +6,17 @@ the development workflow.
 
 ## Features
 
+### Terraform Docs
+
+We use [terraform-docs](https://terraform-docs.io/) to generate documentation
+of Terraform projects. However project must have [`.terraform-docs.yml`](https://terraform-docs.io/user-guide/configuration/)
+configuration file in your root folder of your project.
+
 ### Pre-commit Hook
 
-The pre-commit hook will run `terraform fmt` and `terraform validate` to ensure
-your Terraform code is properly formatted and valid before committing.
+The pre-commit hook will run `terraform fmt`, `terraform validate` and
+`terraform-docs markdown` to ensure your Terraform code is properly formatted,
+valid and documented before committing.
 
 ### Pre-push Hook
 
@@ -18,8 +25,13 @@ passes all tests before pushing to the remote repository.
 
 ### Direct Execution
 
-You can also run the Terraform commands directly using Lefthook. I.e.
-`lefthook run terraform` or `lefthook run terraform --commands fmt`.
+You can also run the Terraform commands directly using Lefthook:
+
+- `lefthook run terraform`
+- `lefthook run terraform --commands fmt`
+- `lefthook run terraform --commands validate`
+- `lefthook run terraform --commands test`
+- `lefthook run terraform --commands docs`
 
 ## How to Use It
 
@@ -46,4 +58,7 @@ terraform:
     fmt:
       env:
         TF_VERSION: 1.10.5
+    docs:
+      env:
+        TF_DOCS_VERSION: 0.19.0
 ```
