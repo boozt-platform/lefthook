@@ -69,6 +69,7 @@ certain files or file extensions using Regular Expression pattern.
 analysis tool for *.md files.
 - [terraform](./hooks/terraform/)
   - **pre-commit**: Formats and validates Terraform configuration files.
+  Generates documentation.
   - **pre-push**: Runs tests to ensure Terraform configurations are correct.
 
 ## About Boozt

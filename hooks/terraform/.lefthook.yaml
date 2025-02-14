@@ -5,7 +5,7 @@ terraform:
   commands:
     fmt: &terraform_fmt
       glob: "*.{tf,tfvars,hcl}"
-      stage_fixed: false
+      stage_fixed: true
       use_stdin: false
       priority: 1
       tags:
@@ -51,10 +51,29 @@ terraform:
           hashicorp/terraform:${TF_VERSION} \
           validate
 
+    docs: &terraform_docs
+      skip:
+        # Skip if no configuration file is found
+        - run: test ! -f ".terraform-docs.yml"
+      stage_fixed: true
+      use_stdin: false
+      priority: 3
+      tags:
+        - terraform
+        - docs
+      run: |
+        TF_DOCS_VERSION=${TF_DOCS_VERSION:-0.19.0}
+
+        docker run --rm -it \
+          -v $PWD:$PWD -w $PWD \
+          -u $(id -u) \
+          quay.io/terraform-docs/terraform-docs:${TF_DOCS_VERSION} \
+          markdown ./
+
     test: &terraform_test
       stage_fixed: false
       use_stdin: false
-      priority: 3
+      priority: 4
       tags:
         - terraform
         - test
@@ -75,7 +94,7 @@ terraform:
           test -verbose=${TF_VERBOSE}
 
 pre-commit:
-  parallel: true
+  parallel: false
   commands:
     terraform_fmt:
       <<: *terraform_fmt
@@ -84,6 +103,8 @@ pre-commit:
         TF_DIFF: "true"
     terraform_validate:
       <<: *terraform_validate
+    terraform_docs:
+      <<: *terraform_docs
 
 pre-push:
   parallel: true
